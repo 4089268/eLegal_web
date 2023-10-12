@@ -1,0 +1,114 @@
+﻿@using eLegal.Entities
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-start py-2">
+    <h1 class="fs-2 text-uppercase">Catalogo Entradas</h1>
+</div>
+
+
+<div class="container-fluid border rounded mt-2 bg-white p-2 d-flex flex-row gap-2 flex-wrap">
+    
+    <div class="d-flex align-items-center border rounded px-2">
+        <svg fill="currentColor" class="text-muted" style="height: 1.5rem; width:1.5rem;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg>
+        <input type="search" class="border-0 form-control px-2 text-muted h-100" id="search-input" placeholder="Filtrar por palabra clave" style="width:24rem;" />
+    </div>
+    
+    <div class="d-flex gap-1" style="margin-left:auto;">
+        <div class="d-flex flex-column" style="width: 12rem;">
+            <label for="">Tipo Entrada</label>
+            <select class="form-select form-select-sm" aria-label="Small select example" style="max-width: 400px;">
+                <option value="0">Todos</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+            </select>
+        </div>
+
+        <div class="d-flex flex-column" style="width: 12rem;">
+            <label for="">Origen</label>
+            <select class="form-select form-select-sm" aria-label="Small select example" style="max-width: 400px;">
+                <option value="0">Todos</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+            </select>
+        </div>
+
+        <div class="d-flex flex-column" style="width: 12rem;">
+            <label for="">Departamento</label>
+            <select class="form-select form-select-sm" aria-label="Small select example" style="max-width: 400px;">
+                <option value="0">Todos</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid border rounded p-2 mt-2 bg-white">
+    <table class="table table-striped table-hover">
+        <thead class="sticky-top bg-primary text-white">
+            <tr>
+                <th scope="col" class="text-center">Folio</th>
+                <th scope="col">Tipo Entrada</th>
+                <th scope="col">Asunto</th>
+                <th scope="col" class="text-center">Tipo Origen</th>
+                <th scope="col" class="text-center">Fecha Registro</th>
+                <th scope="col" class="text-center">Estatus</th>
+                <th scope="col" class="text-center">Utilma Actualizacion</th>
+                <th scope="col" class="text-center">Documentos</th>
+                <th scope="col" class="text-center">Eventos</th>
+            </tr>
+        </thead>
+        <tbody style="height: 30rem; overflow:auto;">
+            @foreach(var entry in ViewBag.items){
+            <tr>
+                <td scope="col" class="text-center">@entry.Folio</td>
+                <td scope="col">@entry.TipoEntrada</td>
+                <td scope="col">@entry.Asunto</td>
+                <td scope="col" class="text-center" >@entry.TipoOrigen</td>
+                <td scope="col" class="text-uppercase">
+                    <div class="d-flex flex-column align-items-center">
+                        <div class="sm">@entry.FechaRegistro.ToString("dd MMM yyyy")</div>
+                        <div class="sm">@entry.FechaRegistro.ToString("HH:mm:ss")</div>
+                    </div>
+                </td>
+                <td scope="col" class="text-center">@entry.Estatus</td>
+                <td scope="col" class="text-center text-uppercase">
+                    <div class="d-flex flex-column align-items-center">
+                        <div class="sm">@entry.UltimaActualizacion.ToString("dd MMM yyyy")</div>
+                        <div style="sm">@entry.UltimaActualizacion.ToString("HH:mm:ss")</div>
+                    </div>
+                </td>
+                <td scope="col" class="text-center">@entry.DocumentosAdjuntos</td>
+                <td scope="col" class="text-center">@entry.EventosRegistrados</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" href="#">Previous</a>
+            </li>
+            <li class="page-item">
+                @Html.ActionLink("1", "Index", "Entries", new {@Page = 1}, new {@class="page-link"})
+            </li>
+            <li class="page-item">
+                @Html.ActionLink("2", "Index", "Entries", new {@Page = 2}, new {@class="page-link"})
+            </li>
+            <li class="page-item">
+                @Html.ActionLink("3", "Index", "Entries", new {@Page = 3}, new {@class="page-link"})
+            </li>
+            <li class="page-item">
+                @Html.ActionLink("Siguiente", "Index", "Entries", new {@Next = 1}, new {@class="page-link"})
+            </li>
+            
+        </ul>
+    </nav>
+</div>

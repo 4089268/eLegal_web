@@ -1,0 +1,28 @@
+:root {
+  --primary-color:#00426a;
+  --primary-color-2: #012133;
+  
+  --bs-primary: #00426a;
+  --bs-primary-rgb: 0, 66, 106;
+}
+html {
+  font-size: 12px;
+  position: relative;
+  min-height: 100%;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+body {
+  margin-bottom: 60px;
+  background: whitesmoke;
+}
+
+bg-primary {
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) !important;
+}
