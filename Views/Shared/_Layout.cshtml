@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="~/eLegal_web.styles.css" asp-append-version="true" />
 </head>
 <body>
-    <header>
+    <header class="sticky-top">
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">eLegal_web</a>
@@ -20,7 +20,7 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Entries" asp-action="Index">Entradas</a>
@@ -30,6 +30,16 @@
                         </li>
                     </ul>
                 </div>
+
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        @User.Identity!.Name
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="LogOut" >Cerrar Sesion</a></li>
+                    </ul>
+                </div>
+
             </div>
         </nav>
     </header>
