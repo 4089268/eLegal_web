@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - eLegal_web</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="./assets/css/argon-dashboard.css?v=2.0.4" id="pagestyle" />
+    <link rel="stylesheet" href="~/assets/css/argon-dashboard.css?v=2.0.4" id="pagestyle" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/eLegal_web.styles.css" asp-append-version="true" />
     
@@ -14,33 +14,44 @@
     <header class="sticky-top">
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">eLegal_web</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+
+                <a class="navbar-brand d-flex" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="/img/logo-a.png" style="height:3rem;">
+                    <div class="ms-2 mt-auto text-auto">V1.1</div>
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+
+                <!-- Navbar -->
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Entries" asp-action="New">Registrar Entrada</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Entries" asp-action="Index">Entradas</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
                     </ul>
                 </div>
 
+                <!-- Usuario -->
                 <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        @User.Identity!.Name
+                    <button class="btn btn-secondary dropdown-toggle mb-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa fa-user pr-1" aria-hidden="true"></i>
+                        <span class="ms-1">@User.Identity!.Name</span>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="LogOut" >Cerrar Sesion</a></li>
+                        <li>
+                            <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="LogOut">
+                                <i class="fa fa-door-open"></i>
+                                <span>Cerrar Sesion</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
+                
 
             </div>
         </nav>
@@ -58,10 +69,11 @@
     </footer>
 
     <!--   Theme Core JS Files   -->
-    <script src="./assets/js/core/bootstrap.min.js"></script>
-    <script src="./assets/js/plugins/perfect-scrollbar.min.js"></script>
-    <script src="./assets/js/plugins/smooth-scrollbar.min.js"></script>
-    @* <script src="./assets/js/plugins/chartjs.min.js"></script> *@
+    <script src="~/assets/js/core/popper.min.js"></script>
+    <!-- <script src="~/assets/js/core/bootstrap.min.js"></script> -->
+    <script src="~/assets/js/plugins/perfect-scrollbar.min.js"></script>
+    <script src="~/assets/js/plugins/smooth-scrollbar.min.js"></script>
+    <!-- <script src="./assets/js/plugins/chartjs.min.js"></script> -->
     <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {

@@ -26,3 +26,7 @@ bg-primary {
   --bs-bg-opacity: 1;
   background-color: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) !important;
 }
+
+.navbar .nav-link {
+  font-size: 1.1rem !important;
+}
