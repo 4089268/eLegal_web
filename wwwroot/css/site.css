@@ -30,3 +30,9 @@ bg-primary {
 .navbar .nav-link {
   font-size: 1.1rem !important;
 }
+
+.form-control-label{
+  font-size: 1.1rem;
+  font-weight: lighter;
+  color: #67748e !important;
+}
