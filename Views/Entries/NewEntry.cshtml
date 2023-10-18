@@ -1,0 +1,144 @@
+﻿@using eLegal.Entities
+@model eLegal_web.Models.NewEntryViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-start py-2">
+    <h1 class="fs-3 text-uppercase">Nueva Entrada</h1>
+</div>
+
+@if(ViewBag.Errores != null){
+    <div class="container">
+        <div class="alert alert-danger" role="alert">
+            <ul class="text-white">
+                @foreach(string message in (string[]) ViewBag.Errores){
+                <li class="fs-7">@message</li>
+                }
+            </ul>
+        </div>
+    </div>
+}
+
+
+<div class="container">
+   @using (Html.BeginForm("Store", "Entries", FormMethod.Post)){
+        <div class="row bg-white border rounded p-2 mb-3">
+            <div class="col-md-8">
+                <div class="form-group">
+                    <label for="asunto" class="form-control-label">Asunto</label>
+                    <input id="asunto" type="text" class="form-control" asp-for="Asunto">
+                    <span asp-validation-for="Folio" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="folio" class="form-control-label">Folio</label>
+                    <input id="folio" type="text" class="form-control" disabled asp-for="Folio" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="usuarioRegistro" class="form-control-label">Registro</label>
+                    <input name="usuarioRegistro" type="text" class="form-control" disabled asp-for="UsuarioRegistro">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="fechaRegistro" class="form-control-label">Fecha Registro</label>
+                    <input id="fechaRegistro" type="datetime-local" class="form-control" disabled asp-for="FechaRegistro">
+                </div>
+            </div>
+        </div>
+
+        <div class="row bg-white border rounded p-2 mb-3">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="idOrigen" class="form-control-label">Origen</label>
+                    <select id="idOrigen" class="form-control" asp-for="IdOrigen">
+                        @foreach(var item in (List<CatOrigen>) ViewData["origins"]!){
+                            <option value="@item.Id">@item.Descripcion</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="form-group">
+                    <label for="oficinaOrigen" class="form-control-label">Oficina Origen</label>
+                    <input id="oficinaOrigen" type="text" class="form-control" asp-for="OficinaOrigen"/>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="idTipoEntrada" class="form-control-label">Tipo Entrada</label>
+                    <select id="idTipoEntrada" class="form-control" asp-for="IdTipoEntrada">
+                        @foreach(var item in (List<CatTipoEntradum>) ViewData["entries_type"]!){
+                            <option value="@item.Id">@item.Descripcion</option>
+                        }
+                    </select>   
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="fechaDocumento" class="form-control-label">Fecha Documento</label>
+                    <input id="fechaDocumento" type="date" class="form-control" asp-for="FechaDocumento"/>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="numeroDocumento" class="form-control-label">Numero Oficio</label>
+                    <input id="numeroDocumento" type="text" class="form-control" asp-for="NumeroDocumento"/>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="descripcion" class="form-control-label">Descripcion / Referencias / Comentarios</label>
+                    <textarea id="descripcion" class="form-control" style="resize:none; height:16rem;" asp-for="Descripcion" ></textarea>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="documents" class="form-control-label">Documentos Adjuntos</label>
+                    <input type="file" multiple id="documents" class="form-control" />
+                </div>
+            </div>
+
+           
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="departamentos" class="form-control-label">Departamentos</label>
+                    <select name="departamentos" id="departamentos" placeholder="Seleccione un departamento" multiple asp-for="Departamentos">
+                        @foreach(CatDepartamento item in (List<CatDepartamento>) ViewData["departments"]!){
+                        <option value="@item.Id">@item.Descripcion</option> }
+                    </select>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row bg-white border rounded p-2 mb-3 felx align-items-center justify-content-center">
+            <input type="submit" value="Agregar" class="btn btn-success mb-0" style="width: 12rem;" />
+        </div>
+   }
+    
+</div>
+
+
+@section Scripts{
+    <link rel="stylesheet" href="~/assets/css/choices.min.css" />
+    <script src="~/assets/js/choices.min.js"></script>
+
+    <!-- <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet"> -->
+
+    <script>
+        //    var quill = new Quill('#editor', {
+        //         theme: 'snow',
+        //         placeholder: 'Descripcion...',
+        //     });
+
+        var secondElement = new Choices('#departamentos', { allowSearch: false }).setValue();
+
+    </script>
+}
