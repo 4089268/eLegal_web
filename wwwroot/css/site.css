@@ -19,7 +19,7 @@ html {
 
 body {
   margin-bottom: 60px;
-  background: whitesmoke;
+  background: #f0f0f0;
 }
 
 bg-primary {
@@ -27,8 +27,14 @@ bg-primary {
   background-color: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) !important;
 }
 
+.navbar-nav {
+  gap: 1rem;
+}
 .navbar .nav-link {
-  font-size: 1.1rem !important;
+  font-size: 1.3rem !important;
+}
+.navbar .nav-link.active {
+  border-bottom: 2px solid orange;
 }
 
 .form-control-label{
