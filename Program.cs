@@ -1,4 +1,5 @@
 using eLegal.Data;
+using eLegal_web.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ELegalContext>();
+builder.Services.AddScoped<ELegalSevice>();
 builder.Services.AddAuthentication( CookieAuthenticationDefaults.AuthenticationScheme )
     .AddCookie( option => {
         option.LoginPath = "/Login";
