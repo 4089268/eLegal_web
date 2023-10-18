@@ -20,9 +20,6 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {   
-        var name = HttpContext.User.Identity!.Name;
-        Console.WriteLine(name);
-
         return View();
     }
 
