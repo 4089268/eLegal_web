@@ -19,7 +19,7 @@ html {
 
 body {
   margin-bottom: 60px;
-  background: #f0f0f0;
+  background: white;
 }
 
 bg-primary {
@@ -38,7 +38,8 @@ bg-primary {
 }
 
 .form-control-label{
+  text-transform: uppercase;
   font-size: 1.1rem;
-  font-weight: lighter;
-  color: #67748e !important;
+  font-weight: normal;
+  color: #333 !important;
 }

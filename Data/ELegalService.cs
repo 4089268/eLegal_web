@@ -2,6 +2,7 @@ using eLegal.Data;
 using eLegal.Entities;
 using eLegal_web.Models;
 using Microsoft.Extensions.Logging.Abstractions;
+using Microsoft.VisualBasic;
 
 namespace eLegal_web.Data {
     public class ELegalSevice {
@@ -135,19 +136,25 @@ namespace eLegal_web.Data {
                 // }
 
                 // Agregar archivos adjuntos
-                // foreach(var file in registroEntrada.DocumentosAdjuntos ){
-                //     var mediaDoc = new OprMedium
-                //     {
-                //         CodigoDocumento = Guid.NewGuid(),
-                //         Folio = entrada.Folio,
-                //         Fecha = DateTime.Now,
-                //         Archivo = file.Data,
-                //         Tipo = file.Type,
-                //         Observacion = file.Name,
-                //         CodigoDetEntrada = new Guid("00000000-0000-0000-0000-000000000000")
-                //     };
-                //     this.ELegalContext.OprMedia.Add(mediaDoc);
-                // }
+                foreach(var file in registroEntrada.Documents ){
+                    
+                    var mediaDocument = new OprMedium
+                    {
+                        CodigoDocumento = Guid.NewGuid(),
+                        Folio = entrada.Folio,
+                        Fecha = DateTime.Now,
+                        Tipo = file.ContentType,
+                        Observacion = file.Name,
+                        CodigoDetEntrada = new Guid("00000000-0000-0000-0000-000000000000")
+                    };
+
+                    using(MemoryStream ms = new MemoryStream()){
+                        file.CopyTo(ms);
+                        mediaDocument.Archivo = ms.ToArray();
+                    }
+                    
+                    _eLegalContext.OprMedia.Add(mediaDocument);
+                }
 
 
                 await _eLegalContext.SaveChangesAsync();

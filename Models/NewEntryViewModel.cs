@@ -1,4 +1,6 @@
 using System.ComponentModel.DataAnnotations;
+using System.Runtime.CompilerServices;
+using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 
 namespace eLegal_web.Models {
     public class NewEntryViewModel  {
@@ -33,6 +35,11 @@ namespace eLegal_web.Models {
         [Required(ErrorMessage = "Se debe seleccionar minimo un Departamento")]
         [MinLength(1, ErrorMessage = "Se debe seleccionar minimo un Departamento")]
         public List<int> Departamentos {get;set;} = new List<int>();
+
+        [Required]
+        [Display(Name = "Select Files")]
+        public List<IFormFile> Documents {get;set;} = new List<IFormFile>();
+        
 
     }
 }
